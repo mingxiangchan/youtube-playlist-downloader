@@ -10,11 +10,10 @@ defmodule YoutubeDownloader do
   """
 
   def start do
-    #filepath = IO.gets "Please input the path to the playlist json\n"
+    filepath = IO.gets "Please input the path to the playlist json\n"
 
-    #filepath
-
-    "~/Downloads/playlist.json"
+    # "~/Downloads/playlist.json"
+    filepath
     |> decode_playlist_json
     |> Map.get("items")
     |> Task.async_stream(&YoutubeDownloader.download/1, @task_stream_options)
